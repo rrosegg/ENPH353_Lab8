@@ -36,6 +36,18 @@ if __name__ == '__main__':
     # Setup environment
     env = gym.make('GazeboCartPole-v0')
 
+    # NEW START ----------------
+
+    # Print action space size
+    print(f"Action space size: {env.action_space.n}")
+    
+    # Print observation space
+    observation = env.reset()
+    print(f"Observation space: {observation}")
+    print(f"Shape of observation space: {numpy.shape(observation)}")
+
+    # NEW END ------------------S
+
     outdir = '/tmp/gazebo_gym_experiments'
     env = gym.wrappers.Monitor(env, outdir, force=True)
     plotter = liveplot.LivePlot(outdir)
@@ -144,5 +156,4 @@ if __name__ == '__main__':
     #print("Parameters: a="+str)
     print("Overall score: {:0.2f}".format(last_time_steps.mean()))
     print("Best 100 score: {:0.2f}".format(reduce(lambda x, y: x + y, l[-100:]) / len(l[-100:])))
-
     env.close()
